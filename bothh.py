@@ -20,7 +20,6 @@ TELEGRAM_GROUP_ID = os.getenv('TELEGRAM_GROUP_ID')
 
 bot = Bot(token=TELEGRAM_BOT_TOKEN)
 
-
 async def send_vacancy_to_telegram(vacancy):
     """
     Формирует и отправляет сообщение о вакансии в Telegram группу.
@@ -50,7 +49,7 @@ async def send_vacancy_to_telegram(vacancy):
     if salary == None:
         salary = "Не указана"
 
-    work_format = "Удаленная работа"
+    work_format = vacancy.get('schedule', {}).get('name', "Не указано")
     
     message = (
         f"📌 *{title}*\n"
